@@ -4,6 +4,7 @@ Code originally from https://github.com/udacity/deep-reinforcement-learning
 ```
 pip3 install gym
 pip3 install 'gym[box2d]'
+sudo apt-get install ffmpeg # to produce videos
 ```
 ## Literature
  - [CONTINUOUS CONTROL WITH DEEP REINFORCEMENT LEARNING](https://arxiv.org/abs/1509.02971), Timothy P. Lillicrap, Jonathan J. Hunt, Alexander Pritzel, Nicolas Heess, Tom Erez, Yuval Tassa, David Silver & Daan Wierstra
