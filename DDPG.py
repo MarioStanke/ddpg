@@ -15,8 +15,8 @@ from ddpg_agent import Agent
 
 from gym.envs import box2d
 env = gym.make("BipedalWalker-v2")
-env.seed(10)
-agent = Agent(state_size=env.observation_space.shape[0], action_size=env.action_space.shape[0], random_seed=10)
+env.seed(8)
+agent = Agent(state_size=env.observation_space.shape[0], action_size=env.action_space.shape[0], random_seed=8)
 
 VIDEO_SUBDIR = "./vid/"
 timestamp = str(time())

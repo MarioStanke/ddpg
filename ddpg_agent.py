@@ -13,9 +13,9 @@ BUFFER_SIZE = int(1e4)  # replay buffer size, int(1e6)
 BATCH_SIZE = 128        # minibatch size
 GAMMA = 0.99            # discount factor
 TAU = 1e-3              # for soft update of target parameters
-LR_ACTOR = 1e-4         # learning rate of the actor 
-LR_CRITIC = 3e-4        # learning rate of the critic
-WEIGHT_DECAY = 0.0001   # L2 weight decay
+LR_ACTOR = 1e-3         # learning rate of the actor 
+LR_CRITIC = 1e-4        # learning rate of the critic
+WEIGHT_DECAY = 0.01     # L2 weight decay
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
@@ -132,7 +132,7 @@ class Agent():
 class OUNoise:
     """Ornstein-Uhlenbeck process."""
 
-    def __init__(self, size, seed, mu=0., theta=0.15, sigma=0.15):
+    def __init__(self, size, seed, mu=0., theta=0.15, sigma=0.3):
         """Initialize parameters and noise process."""
         print ("OU, theta=", theta, ", sigma=", sigma)
         self.mu = mu * np.ones(size)
