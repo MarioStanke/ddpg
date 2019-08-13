@@ -9,7 +9,7 @@ import torch
 import torch.nn.functional as F
 import torch.optim as optim
 
-BUFFER_SIZE = int(1e4)  # replay buffer size, int(1e6)
+BUFFER_SIZE = int(1e6)  # replay buffer size, int(1e6)
 BATCH_SIZE = 128        # minibatch size
 GAMMA = 0.99            # discount factor
 TAU = 1e-3              # for soft update of target parameters
@@ -57,7 +57,7 @@ class Agent():
         self.memory.add(state, action, reward, next_state, done)
 
         # Learn, if enough samples are available in memory
-        if len(self.memory) > BATCH_SIZE:
+        if len(self.memory) > 20 * BATCH_SIZE:
             experiences = self.memory.sample()
             self.learn(experiences, GAMMA)
 
