@@ -1,30 +1,15 @@
-
-# coding: utf-8
-
-# # Deep Deterministic Policy Gradients (DDPG)
-# ---
-# In this notebook, we train DDPG with OpenAI Gym's BipedalWalker-v2 environment.
-# 
-# ### 1. Import the Necessary Packages
-
-# In[1]:
-
-
 import gym
 import random
 import torch
 import numpy as np
 from collections import deque
 import matplotlib.pyplot as plt
-get_ipython().magic('matplotlib inline')
+# get_ipython().magic('matplotlib inline')
 
 from ddpg_agent import Agent
 
 
 # ### 2. Instantiate the Environment and Agent
-
-# In[2]:
-
 
 from gym.envs import box2d
 env = gym.make("BipedalWalker-v2")
@@ -35,18 +20,15 @@ agent = Agent(state_size=env.observation_space.shape[0], action_size=env.action_
 # ### 3. Train the Agent with DDPG
 # 
 # Run the code cell below to train the agent from scratch.  Alternatively, you can skip to the next code cell to load the pre-trained weights from file.
-
-# In[3]:
-
-
-def ddpg(n_episodes=2000, max_t=700):
+def ddpg(n_episodes=4000, max_t=500):
     scores_deque = deque(maxlen=100)
     scores = []
-    max_score = -np.Inf
+    max_reward = -np.Inf
+    durations = deque(maxlen=100)
     for i_episode in range(1, n_episodes+1):
         state = env.reset()
         agent.reset()
-        score = 0
+        score = 0    
         for t in range(max_t):
             action = agent.act(state)
             next_state, reward, done, _ = env.step(action)
@@ -54,14 +36,22 @@ def ddpg(n_episodes=2000, max_t=700):
             state = next_state
             score += reward
             if done:
-                break 
+                durations.append(t)
+                break
+        if (not done):
+            durations.append(max_t)
+            
+        if (score > max_reward):
+            max_reward = score
+            
         scores_deque.append(score)
         scores.append(score)
-        print('\rEpisode {}\tAverage Score: {:.2f}\tScore: {:.2f}'.format(i_episode, np.mean(scores_deque), score), end="")
+        outstr = '\rEpisode {}\tAverage Score: {:.2f}\tScore: {:.2f}\tav duration: {:.1f}'
+        print(outstr.format(i_episode, np.mean(scores_deque), score, np.mean(durations)), end="")
         if i_episode % 100 == 0:
-            torch.save(agent.actor_local.state_dict(), 'checkpoint_actor.pth')
-            torch.save(agent.critic_local.state_dict(), 'checkpoint_critic.pth')
-            print('\rEpisode {}\tAverage Score: {:.2f}'.format(i_episode, np.mean(scores_deque)))   
+            torch.save(agent.actor_local.state_dict(), 'checkpoint_actor' + str(i_episode) + '.pth')
+            torch.save(agent.critic_local.state_dict(), 'checkpoint_critic' + str(i_episode) + '.pth')
+            print('\rEpisode {}\tAverage Score: {:.2f}\tmax_reward: {:.1f}    '.format(i_episode, np.mean(scores_deque), max_reward))
     return scores
 
 scores = ddpg()
@@ -78,11 +68,9 @@ plt.show()
 # 
 # In the next code cell, you will load the trained weights from file to watch a smart agent!
 
-# In[ ]:
 
-
-agent.actor_local.load_state_dict(torch.load('checkpoint_actor.pth'))
-agent.critic_local.load_state_dict(torch.load('checkpoint_critic.pth'))
+agent.actor_local.load_state_dict(torch.load('checkpoint_actor4000.pth'))
+agent.critic_local.load_state_dict(torch.load('checkpoint_critic4000.pth'))
 
 state = env.reset()
 agent.reset()   
