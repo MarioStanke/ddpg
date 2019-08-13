@@ -37,7 +37,7 @@ def make_video_frames(i_episode):
     env.close()
 
 # ### 3. Train the Agent with DDPG
-n_episodes = 301
+n_episodes = 3001
 latest_actor_fname = ""
 latest_critic_fname = ""
 
@@ -69,12 +69,12 @@ def ddpg(max_t=500):
         scores.append(score)
         outstr = '\rEpisode {}\tAverage Score: {:.2f}\tScore: {:.2f}\tav duration: {:.1f}'
         print(outstr.format(i_episode, np.mean(scores_deque), score, np.mean(durations)), end="")
-        if i_episode % 50 == 0 or i_episode == n_episodes - 1:
+        if i_episode % 100 == 0 or i_episode == n_episodes - 1:
             latest_actor_fname = 'checkpoint_actor' + str(i_episode) + '.pth'
             latest_critic_fname = 'checkpoint_critic' + str(i_episode) + '.pth'
             torch.save(agent.actor_local.state_dict(), latest_actor_fname)
             torch.save(agent.critic_local.state_dict(), latest_critic_fname)
-            print('\rEpisode {}\tAverage Score: {:.2f}\tmax_reward: {:.1f}    '.format(i_episode, np.mean(scores_deque), max_reward))
+            print('\rEpisode {}\tAverage Score: {:.2f}\tmax_reward: {:.1f} '.format(i_episode, np.mean(scores_deque), max_reward))
             make_video_frames(i_episode)
             
     return scores
