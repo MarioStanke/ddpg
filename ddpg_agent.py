@@ -148,9 +148,7 @@ class OUNoise:
 
     def sample(self):
         """Update internal state and return it as a noise sample."""
-        x = self.state
-        dx = self.theta * (self.mu - x) + self.sigma * np.array([random.random() for i in range(len(x))])
-        self.state = x + dx
+        self.state += self.theta * (self.mu - self.state) + np.random.normal(scale=self.sigma, size = self.mu.size)
         return self.state
 
 class ReplayBuffer:
