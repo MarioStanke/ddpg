@@ -14,9 +14,13 @@ from ddpg_agent import Agent
 # ### 2. Instantiate the Environment and Agent
 
 from gym.envs import box2d
-env = gym.make("BipedalWalker-v2")
+env = gym.make('Pendulum-v0') # "BipedalWalker-v2"), 'MountainCarContinuous-v0'
 env.seed(7)
-agent = Agent(state_size=env.observation_space.shape[0], action_size=env.action_space.shape[0], random_seed=7)
+agent = Agent(state_size=env.observation_space.shape[0],
+              action_size=env.action_space.shape[0],
+              lows = env.action_space.low,   # minimum and maximum
+              highs = env.action_space.high, # for each of the action values
+              random_seed=7)
 
 VIDEO_SUBDIR = "./vid/"
 timestamp = str(time())
@@ -27,7 +31,7 @@ def make_video_frames(i_episode):
     state = env.reset()
     agent.reset()
     while True:
-        action = agent.act(state)
+        action = agent.act(state, add_noise=False)
         env.render()
         next_state, reward, done, _ = env.step(action)
         state = next_state
@@ -37,11 +41,11 @@ def make_video_frames(i_episode):
     env.close()
 
 # ### 3. Train the Agent with DDPG
-n_episodes = 3001
+n_episodes = 301
 latest_actor_fname = ""
 latest_critic_fname = ""
 
-def ddpg(max_t=500):
+def ddpg(max_t=200):
     global latest_actor_fname
     global latest_critic_fname
     scores_deque = deque(maxlen=100)
@@ -71,7 +75,7 @@ def ddpg(max_t=500):
         scores.append(score)
         outstr = '\rEpisode {}\tAverage Score: {:.2f}\tScore: {:.2f}\tav duration: {:.1f}'
         print(outstr.format(i_episode, np.mean(scores_deque), score, np.mean(durations)), end="")
-        if i_episode % 100 == 0 or i_episode == n_episodes - 1:
+        if i_episode % 50 == 0 or i_episode == n_episodes - 1:
             latest_actor_fname = 'checkpoint_actor' + str(i_episode) + '.pth'
             latest_critic_fname = 'checkpoint_critic' + str(i_episode) + '.pth'
             torch.save(agent.actor_local.state_dict(), latest_actor_fname)
@@ -98,7 +102,7 @@ agent.critic_local.load_state_dict(torch.load(latest_critic_fname))
 state = env.reset()
 agent.reset()   
 while True:
-    action = agent.act(state)
+    action = agent.act(state, add_noise=False)
     env.render()
     next_state, reward, done, _ = env.step(action)
     state = next_state
