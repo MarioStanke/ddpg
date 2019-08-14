@@ -15,8 +15,8 @@ from ddpg_agent import Agent
 
 from gym.envs import box2d
 env = gym.make("BipedalWalker-v2")
-env.seed(8)
-agent = Agent(state_size=env.observation_space.shape[0], action_size=env.action_space.shape[0], random_seed=8)
+env.seed(7)
+agent = Agent(state_size=env.observation_space.shape[0], action_size=env.action_space.shape[0], random_seed=7)
 
 VIDEO_SUBDIR = "./vid/"
 timestamp = str(time())
@@ -42,6 +42,8 @@ latest_actor_fname = ""
 latest_critic_fname = ""
 
 def ddpg(max_t=500):
+    global latest_actor_fname
+    global latest_critic_fname
     scores_deque = deque(maxlen=100)
     scores = []
     max_reward = -np.Inf
