@@ -40,6 +40,23 @@ date > DDPG10.out
 ./DDPG.py --OU_theta=0.25 --weight_decay=0.1 >> DDPG10.out
 mv checkpoint_*.pth 10
 
-#date > DDPG11.out
-#./DDPG.py --n_episodes=8000 >> DDPG11.out
-#mv checkpoint_*.pth 11
+# monty
+date > DDPG11.out
+./DDPG.py --n_episodes=5000 --OU_theta=0.2 >> DDPG11.out
+mv checkpoint_*.pth 11
+
+date > DDPG12.out
+./DDPG.py --n_episodes=5000 --lr_actor=0.0004 >> DDPG12.out
+mv checkpoint_*.pth 12
+
+date > DDPG13.out
+./DDPG.py --n_episodes=5000 --lr_actor=0.001 >> DDPG13.out
+mv checkpoint_*.pth 13
+
+date > DDPG14.out
+./DDPG.py --n_episodes=1000 --OU_theta=0.25 >> DDPG14.out
+mv checkpoint_*.pth 14
+
+date > DDPG15.out
+./DDPG.py --n_episodes=1000 --OU_theta=0.25 >> DDPG15.out
+mv checkpoint_*.pth 15
