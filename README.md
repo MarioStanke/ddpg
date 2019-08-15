@@ -15,3 +15,7 @@ Watch latest video in slow motion
 ```
 ls -rt vid/*/*/*.mp4 | tail -n 1 | xargs mpv --speed=.1
 ```
+
+## TODOs
+ - make sure that exact same outcome is obtained with the same random seed
+ 
