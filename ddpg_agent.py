@@ -8,15 +8,16 @@ from model import Actor, Critic
 import torch
 import torch.nn.functional as F
 import torch.optim as optim
+import cfg
 
-BUFFER_SIZE = int(1e6)  # replay buffer size, int(1e6)
-REPLAY_START_SIZE = 1e4 # start training when this many examples were collected
-BATCH_SIZE = 64         # minibatch size
-GAMMA = 0.99            # discount factor
-TAU = 1e-3              # for soft update of target parameters
-LR_ACTOR = 1e-3         # learning rate of the actor 
-LR_CRITIC = 1e-4        # learning rate of the critic
-WEIGHT_DECAY = 0.01     # L2 weight decay
+BUFFER_SIZE = cfg.args.buffer_size   # replay buffer size
+BATCH_SIZE = 64                      # minibatch size
+REPLAY_START_SIZE = BATCH_SIZE       # start training when this many examples were collected
+GAMMA = 0.99                         # discount factor
+TAU = 1e-3                           # for soft update of target parameters
+LR_ACTOR = cfg.args.lr_actor             # learning rate of the actor 
+LR_CRITIC = cfg.args.lr_critic           # learning rate of the critic
+WEIGHT_DECAY = cfg.args.weight_decay # L2 weight decay
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
@@ -135,7 +136,7 @@ class Agent():
 class OUNoise:
     """Ornstein-Uhlenbeck process."""
 
-    def __init__(self, size, seed, mu=0., theta=0.15, sigma=0.3):
+    def __init__(self, size, seed, mu=0., theta=cfg.args.OU_theta, sigma=0.2):
         """Initialize parameters and noise process."""
         self.mu = mu * np.ones(size)
         self.theta = theta

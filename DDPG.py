@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import gym
 from gym import wrappers
 import random
@@ -8,19 +9,23 @@ import matplotlib.pyplot as plt
 from time import time
 # get_ipython().magic('matplotlib inline')
 
+#get command-line arguments
+import cfg
+cfg.init()
+
 from ddpg_agent import Agent
 
-
+#
 # ### 2. Instantiate the Environment and Agent
 
 from gym.envs import box2d
 env = gym.make('BipedalWalker-v2') # 'Pendulum-v0'  'MountainCarContinuous-v0'
-env.seed(3)
-agent = Agent(state_size=env.observation_space.shape[0],
-              action_size=env.action_space.shape[0],
+env.seed(cfg.args.seed)
+agent = Agent(state_size = env.observation_space.shape[0],
+              action_size = env.action_space.shape[0],
               lows = env.action_space.low,   # minimum and maximum
               highs = env.action_space.high, # for each of the action values
-              random_seed=3)
+              random_seed = cfg.args.seed)
 
 VIDEO_SUBDIR = "./vid/"
 timestamp = str(time())
@@ -44,22 +49,21 @@ def make_video_frames(i_episode):
     return score
 
 # ### 3. Train the Agent with DDPG
-n_episodes = 2001
 latest_actor_fname = ""
 latest_critic_fname = ""
 
-def ddpg(max_t=200):
+def ddpg():
     global latest_actor_fname
     global latest_critic_fname
     scores_deque = deque(maxlen=100)
     scores = []
     max_reward = -np.Inf
     durations = deque(maxlen=100)
-    for i_episode in range(n_episodes):
+    for i_episode in range(cfg.args.n_episodes):
         state = env.reset()
         agent.reset()
         score = 0    
-        for t in range(max_t):
+        for t in range(cfg.args.max_t):
             action = agent.act(state)
             next_state, reward, done, _ = env.step(action)
             agent.step(state, action, reward, next_state, done)
@@ -69,7 +73,7 @@ def ddpg(max_t=200):
                 durations.append(t)
                 break
         if (not done):
-            durations.append(max_t)
+            durations.append(cfg.args.max_t)
             
         if (score > max_reward):
             max_reward = score
@@ -78,13 +82,13 @@ def ddpg(max_t=200):
         scores.append(score)
         outstr = '\rEpisode {}\tAverage Score: {:.2f}\tScore: {:.2f}\tav duration: {:.1f}'
         print(outstr.format(i_episode, np.mean(scores_deque), score, np.mean(durations)), end="")
-        if i_episode % 50 == 0 or i_episode == n_episodes - 1:
+        if i_episode % 100 == 0 or i_episode == cfg.args.n_episodes - 1:
             latest_actor_fname = 'checkpoint_actor' + str(i_episode) + '.pth'
             latest_critic_fname = 'checkpoint_critic' + str(i_episode) + '.pth'
             torch.save(agent.actor_local.state_dict(), latest_actor_fname)
             torch.save(agent.critic_local.state_dict(), latest_critic_fname)
             lastscore = make_video_frames(i_episode)
-            print('\rEpisode {}\tAverage Score: {:.2f}\tmax_reward: {:.1f} \tscore: {:.2f}'
+            print('\rEpisode {}\tAverage Score: {:.2f}\tmax_reward: {:.1f}    score: {:.2f}'
                   .format(i_episode, np.mean(scores_deque), max_reward, lastscore))
 
             
@@ -92,12 +96,13 @@ def ddpg(max_t=200):
 
 scores = ddpg()
 
-fig = plt.figure()
-ax = fig.add_subplot(111)
-plt.plot(np.arange(1, len(scores)+1), scores)
-plt.ylabel('Score')
-plt.xlabel('Episode #')
-plt.show()
+if False:
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    plt.plot(np.arange(1, len(scores)+1), scores)
+    plt.ylabel('Score')
+    plt.xlabel('Episode #')
+    plt.show()
 
 
 

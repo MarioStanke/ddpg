@@ -1,0 +1,45 @@
+mkdir -p 1 2 3 4 5 6
+
+date > DDPG1.out
+./DDPG.py --OU_theta=0.08 >> DDPG1.out
+mv checkpoint_*.pth 1
+
+date > DDPG2.out
+./DDPG.py --OU_theta=0.25 >> DDPG2.out
+mv checkpoint_*.pth 2
+
+date > DDPG3.out
+./DDPG.py --buffer_size=20000 >> DDPG3.out
+mv checkpoint_*.pth 3
+
+date > DDPG4.out
+./DDPG.py --buffer_size=1000000 >> DDPG4.out
+mv checkpoint_*.pth 4
+
+date > DDPG5.out
+./DDPG.py --lr_critic=.005 >> DDPG5.out
+mv checkpoint_*.pth 5
+
+date > DDPG6.out
+./DDPG.py --n_episodes=8000 >> DDPG6.out
+mv checkpoint_*.pth 6
+
+date > DDPG7.out
+./DDPG.py --OU_theta=0.25 --n_episodes=5000 >> DDPG7.out
+mv checkpoint_*.pth 7
+
+date > DDPG8.out
+./DDPG.py --OU_theta=0.4 >> DDPG8.out
+mv checkpoint_*.pth 8
+
+date > DDPG9.out
+./DDPG.py --OU_theta=0.25 --weight_decay=0 >> DDPG9.out
+mv checkpoint_*.pth 9
+
+date > DDPG10.out
+./DDPG.py --OU_theta=0.25 --weight_decay=0.1 >> DDPG10.out
+mv checkpoint_*.pth 10
+
+#date > DDPG11.out
+#./DDPG.py --n_episodes=8000 >> DDPG11.out
+#mv checkpoint_*.pth 11

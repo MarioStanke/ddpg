@@ -4,6 +4,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+import cfg
+
 def hidden_init(layer):
     fan_in = layer.weight.data.size()[1]
     lim = .1 / np.sqrt(fan_in)
@@ -27,6 +29,9 @@ class Actor(nn.Module):
         self.fc1 = nn.Linear(state_size, fc1_units)
         self.fc2 = nn.Linear(fc1_units, fc2_units)
         self.fc3 = nn.Linear(fc2_units, action_size)
+        # print ("Actor")
+        # for param in self.parameters():
+        #    print(param.data)
         self.reset_parameters()
 
     def reset_parameters(self):
