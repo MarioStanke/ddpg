@@ -1,14 +1,13 @@
 from ddpg_orig_tf import Agent
 import gym
 import numpy as np
-from utils import plotLearning
 from gym import wrappers
 import os
 
 #tf.set_random_seed(0)
 if __name__ == '__main__':
-    os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-    os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+    #os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+   # os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
     env = gym.make('BipedalWalker-v2')
     agent = Agent(alpha=0.00005, beta=0.0005, input_dims=[24], tau=0.001, env=env,
@@ -36,7 +35,3 @@ if __name__ == '__main__':
               'trailing 100 games avg %.3f' % np.mean(score_history[-100:]))
         if i % 25 == 0:
             agent.save_models()
-    filename = 'WalkerTF-alpha00005-beta0005-400-300-original-5000games-testing.png'
-    plotLearning(score_history, filename, window=100)
-
-

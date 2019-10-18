@@ -32,7 +32,7 @@ timestamp = str(time())
 
 def make_video_frames(i_episode):
     global env
-    env = wrappers.Monitor(env, VIDEO_SUBDIR + timestamp + "/" + str(i_episode) + "/")
+    # env = wrappers.Monitor(env, VIDEO_SUBDIR + timestamp + "/" + str(i_episode) + "/")
     state = env.reset()
     agent.reset()
     score = 0
