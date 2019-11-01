@@ -4,8 +4,66 @@ import random
 import copy
 from collections import namedtuple, deque
 from Model import Actor, Critic
+from mr.TF_Implementations.keiohta.target_update_ops import update_target_variables
 
 #TODO: Check OUNoise for mistakes, adjust Replay_Buffer terminology, add actual Off-Policy Agent
+#NOTES: Removed seed from critic/actor init, does tf.keras optim use weight decay?
+
+BUFFER_SIZE = 100000   # replay buffer size
+BATCH_SIZE = 64                      # minibatch size
+REPLAY_START_SIZE = BATCH_SIZE       # start training when this many examples were collected
+GAMMA = 0.99                         # discount factor
+tau=0.005                      # for soft update of target parameters
+LR_ACTOR = 0.001             # learning rate of the actor 
+LR_CRITIC = 0.001           # learning rate of the critic
+#WEIGHT_DECAY = 0.0001 # L2 weight decay
+sigma=0.1
+
+
+class Agent():
+    def __init__(self, state_size, action_size, lows, highs, random_seed):
+        """Initialize an Agent object.
+        
+        Params
+        ======
+            state_size (int): dimension of each state
+            action_size (int): dimension of each action
+            random_seed (int): random seed
+        """
+        self.state_size = state_size
+        self.action_size = action_size
+        self.lows = lows
+        self.highs = highs
+        self.seed = random.seed(random_seed)
+
+        # Actor Network (w/ Target Network)
+        self.actor_local = Actor(state_size, action_size, random_seed).to(device)
+        self.actor_target = Actor(state_size, action_size, random_seed).to(device)
+        self.actor_optimizer = tf.keras.optimizers.Adam(learning_rate=lr_actor)
+        update_target_variables(self.actor_target.weights,self.actor.weights, tau=1.)
+
+        # Critic Network (w/ Target Network)
+        self.critic_local = Critic(state_size, action_size).to(device)
+        self.critic_target = Critic(state_size, action_size).to(device)
+        self.critic_optimizer = tf.keras.optimizers.Adam(learning_rate=lr_critic)
+        update_target_variables(self.critic_target.weights, self.critic.weights, tau=1.)
+
+        # Set hyperparameters
+        self.sigma = sigma
+        self.tau = tau
+
+        # Noise process
+        self.noise = OUNoise(action_size, random_seed)
+
+        # Replay memory
+        self.memory = ReplayBuffer(action_size, BUFFER_SIZE, BATCH_SIZE, random_seed)
+
+
+
+
+
+
+
 
 class OUNoise(object):
     "Ornstein-Uhlenbeck process"
