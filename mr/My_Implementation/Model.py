@@ -2,15 +2,15 @@ import numpy as np
 import tensorflow as tf 
 from tensorflow.keras.layers import Dense
 
-#TODO: reset parameter function, extra layer critic network?
+#TODO: reset parameter function, extra layer critic network? seed?
 
 class Actor(tf.keras.Model):
-    def __init__(self, state_size, action_size, action_dim, units[400, 300], name="Actor"):
+    def __init__(self, state_size, action_size, units[400, 300], name="Actor"):
         super().__init__(name=name)
         
         self.l1 = Dense(units[0], name="L1")
         self.l2 = Dense(units[1], name="L2")
-        self.l3 = Dense(action_dim, name="L3")
+        self.l3 = Dense(action_size, name="L3")
 
         self.max_action = max_action
 
@@ -44,4 +44,5 @@ class Critic(tf.keras.Model):
         features = tf.concat([states, actions], axis=1)
         features = tf.nn.relu(self.l1(inputs))
         features = tf.nn.relu(self.l2(features))
-        return self.l3(features)
+        features = self.l3(features)
+        return features
