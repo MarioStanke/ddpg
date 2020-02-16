@@ -60,3 +60,31 @@ mv checkpoint_*.pth 14
 date > DDPG15.out
 ./DDPG.py --n_episodes=1000 --OU_theta=0.25 >> DDPG15.out
 mv checkpoint_*.pth 15
+
+date > DDPG16.out
+./DDPG.py --n_episodes=1000 --OU_theta=0.25 >> DDPG16.out
+mkdir 16
+mv checkpoint_*.pth 16
+
+parallel --bar --jobs 6 --no-notice \
+  'D=res-r{1}-OU{2}; mkdir $D; cd $D; ../DDPG.py --n_episodes=2000 --OU_theta={2} > DDPG.out; cd ..' \
+  ::: `seq 2` ::: .15 .25
+
+
+# Feb 15th, 2020
+parallel --bar --jobs 6 --no-notice \
+  'D=res-s{1}-OU{2}-lr{3}; mkdir $D; cd $D; ../DDPG.py --seed={1} --n_episodes=4000 --OU_theta={2} --lr_actor={3} > DDPG.out; cd ..' \
+  ::: `seq 9` ::: .15 ::: 1e-4 1e-3
+# ~ 10h on monty
+# --lr_actor=1e-4 better than 1e-3
+
+# summary of results
+for s in `seq 1 9`; do echo -e "seed=$s" > res-s1-9-OU.15-lr1e-3; cat res-s$s-OU.15-lr1e-4/*out >> res-s1-9-OU.15-lr1e-3.out; done
+# view with cat
+# in 2 of 9 final rollouts (rewards 272, 273) the goal is reached
+
+# thin out the results to save space
+rm -r res-*/158*/{,1,2,3}{100,300,400,500,600,700,800}
+
+# one good run
+cp -i res-s2-OU.15-lr1e-4/1581800420.3237207/3999/openaigym.video.40.3542.video000000.mp4 videos/
