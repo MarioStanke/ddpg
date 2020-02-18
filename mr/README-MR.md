@@ -8,8 +8,10 @@ pip install --user --upgrade tf-agents-nightly
 #Open DDPG.ipynb with Jupyter Lab and run all cells
 ```
 ## TODOs
- - Adjust params and (likely) actor critic nets (Result of learning not satisfactory)
- - Add more comments and generally clean up code
+```
+- Implement idea 2
+- Fix video creation
+```
 ## Citation
 ```
 @misc{TFAgents,
