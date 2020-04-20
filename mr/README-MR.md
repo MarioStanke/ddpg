@@ -1,16 +1,21 @@
 # DDPG
-Code (partly) originally from https://github.com/tensorflow/agents
+Code (partly) from https://github.com/tensorflow/agents
 Citation below
 ## Installation and Execution
 ```
-pip3 install tb-nightly
-pip install --user --upgrade tf-agents-nightly
-#Open DDPG.ipynb with Jupyter Lab and run all cells
+pip install tf-agents==0.3.0    # Install TF-Agents for dependencies
+pip install tensorboard    # Install Tensorboard or viewing results
+pip install jupyterlab     # Install jupyterlab for running scripts
+
+# Open .ipynb scripts with jupyterlab, set root_dir, then run all cells.
+
+# Alternatively, go to https://jupyterhub.wolke.uni-greifswald.de/,
+# log in, start server with Tensorflow 2.1.0, upload .ipynb scripts,
+# open script, set root_dir, then run all cells.
 ```
 ## TODOs
 ```
-- Implement idea 2
-- Fix video creation
+- Add remaining Hyperparameter Tuning Results.
 ```
 ## Citation
 ```
