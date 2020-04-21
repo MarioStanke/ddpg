@@ -1,5 +1,5 @@
 # DDPG
-Code (partly) from https://github.com/tensorflow/agents
+Code originally from https://github.com/tensorflow/agents
 Citation below
 ## Installation and Execution
 ```
@@ -28,6 +28,6 @@ pip install jupyterlab     # Install jupyterlab for running scripts
   howpublished = {\url{https://github.com/tensorflow/agents}},
   url = "https://github.com/tensorflow/agents",
   year = 2018,
-  note = "[Online; accessed 25-June-2019]"
+  note = "[Online; accessed 17.12.2019]"
 }
 ```
