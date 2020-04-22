@@ -1,5 +1,6 @@
 # DDPG
-Code originally from https://github.com/tensorflow/agents
+Code originally from https://github.com/tensorflow/agents/tree/master/tf_agents/agents/ddpg/examples
+
 Citation below
 ## Installation and Execution
 ```
