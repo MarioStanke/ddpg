@@ -46,7 +46,8 @@ To view policy evaluation data or data on losses and training, follow these inst
 to view evaluation of the current policy.
 - For viewing training data, run:  
 ```tensorboard --logdir=train/($run_id)'.    # Enter actual run_id at ($run_id)```
-- Then open any browser, go to [http://localhost:6006/] to view graphs of your training data.
+
+Then open any browser, go to [http://localhost:6006/] to view graphs of your data.
 
 The vid directory has subdirectories named after the iteration the video was created at.
 Each subdirectory contains one video of the policy being executed.
