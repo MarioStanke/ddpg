@@ -77,9 +77,12 @@ def dir_path(path):
         
 global args
 parser = argparse.ArgumentParser(description = 'DDPG Arguments')
-parser.add_argument('--run_id', type = int, help = "Identifying integer for output folder names (default: 28421).")
-parser.add_argument('--path', type = dir_path, help = "Path to existing directory for output (default: '~/').")
-parser.add_argument('--use_CS5Gamma', type = bool, help = "Set true for CS5Gamma parameter configuration (default: False).")
+parser.add_argument('--run_id', type = int, 
+                    help = "Identifying integer for output folder names (default: 28421).")
+parser.add_argument('--path', type = dir_path, 
+                    help = "Path to existing directory for output (default: '~/').")
+parser.add_argument('--use_CS5Gamma', type = bool, 
+                    help = "Set true for CS5Gamma parameter configuration (default: False).")
 args = parser.parse_args()
     
 if args.run_id is not None:
@@ -201,10 +204,10 @@ def DDPG_Bipedal(root_dir):
         
         # Determine which train metrics to display with summary writer
         train_metrics = [
-            tf_metrics.NumberOfEpisodes(),
-            tf_metrics.EnvironmentSteps(),
-            tf_metrics.AverageReturnMetric(),
-            tf_metrics.AverageEpisodeLengthMetric(),
+                        tf_metrics.NumberOfEpisodes(),
+                        tf_metrics.EnvironmentSteps(),
+                        tf_metrics.AverageReturnMetric(),
+                        tf_metrics.AverageEpisodeLengthMetric(),
         ]
         
         # Set policies for evaluation, initial collection
@@ -220,18 +223,18 @@ def DDPG_Bipedal(root_dir):
         
         # Define driver for initial replay buffer filling
         initial_collect_driver = dynamic_step_driver.DynamicStepDriver(
-                                     tf_env,
-                                     collect_policy,    # Initializes with random Parameters as beta
-                                     observers = [replay_buffer.add_batch],
-                                     num_steps = initial_collect_steps
+                                 tf_env,
+                                 collect_policy,    # Initializes with random Parameters
+                                 observers = [replay_buffer.add_batch],
+                                 num_steps = initial_collect_steps
         )
 
         # Define collect driver for collect steps per iteration
         collect_driver = dynamic_step_driver.DynamicStepDriver(
-                             tf_env,
-                             collect_policy,
-                             observers = [replay_buffer.add_batch] + train_metrics,
-                             num_steps = collect_steps_per_iteration
+                         tf_env,
+                         collect_policy,
+                         observers = [replay_buffer.add_batch] + train_metrics,
+                         num_steps = collect_steps_per_iteration
         )
         
         if use_tf_functions:
@@ -319,11 +322,12 @@ def DDPG_Bipedal(root_dir):
                 )
                 metric_utils.log_metrics(eval_metrics)
                 if results['AverageReturn'].numpy() >= 230.0:
-                    video_score = create_video(video_dir = vid_dir,
-                                               env_name = "BipedalWalker-v2",
-                                               vid_policy = eval_policy,
-                                               video_id = global_step.numpy()
-                                              )
+                    video_score = create_video(
+                                  video_dir = vid_dir,
+                                  env_name = "BipedalWalker-v2",
+                                  vid_policy = eval_policy,
+                                  video_id = global_step.numpy()
+                    )
     return train_loss
 
 '''Run DDPG'''
