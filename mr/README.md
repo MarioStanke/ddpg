@@ -30,7 +30,7 @@ To run DDPG_Bipedal.py:
 - Run ```python DDPG_Bipedal.py --help```,
 - Run with arguments according to help description.
 
-## Output management
+## Output Management
 
 DDPG Bipedal will create three subdirectories to the directory the path was set to:
 - ```eval``` contains data on policy evaluation,
