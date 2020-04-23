@@ -4,15 +4,19 @@ Code originally from https://github.com/tensorflow/agents/tree/master/tf_agents/
 Citation below
 ## Installation and Execution
 ```
+pip install gym==0.15.4
+pip install box2d-py==2.3.8   # Install gym to get BipedalWalker-v2
+sudo apt-get install ffmpeg    # Install ffmpeg for video creation
 pip install tf-agents==0.3.0    # Install TF-Agents for dependencies
 pip install tensorboard    # Install Tensorboard or viewing results
 pip install jupyterlab     # Install jupyterlab for running scripts
 
-# Open .ipynb scripts with jupyterlab, set root_dir, then run all cells.
+# Open DDPG_Bipedal.ipynb script with jupyter lab
+# Follow instructions in first cell, then run all cells
 
-# Alternatively, go to https://jupyterhub.wolke.uni-greifswald.de/,
-# log in, start server with Tensorflow 2.1.0, upload .ipynb scripts,
-# open script, set root_dir, then run all cells.
+# Alternatively, get DDPG_Bipedal.py, open terminal 
+# Then change current directory to where DDPG_Bipedal.py is
+# Run 'python DDPG_Bipedal.py --help' and follow instructions to set relevant parameters.
 ```
 ## TODOs
 ```
