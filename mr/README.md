@@ -1,4 +1,4 @@
-# DDPG
+# DDPG Bipedal
 Code originally from https://github.com/tensorflow/agents/tree/master/tf_agents/agents/ddpg/examples  
 Citation can be found at the bottom.
 
