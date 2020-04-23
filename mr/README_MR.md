@@ -1,5 +1,5 @@
 # DDPG
-Code originally from https://github.com/tensorflow/agents/tree/master/tf_agents/agents/ddpg/examples
+Code originally from https://github.com/tensorflow/agents/tree/master/tf_agents/agents/ddpg/examples  
 citation below
 
 [Video of walker trained with CS5Gamma](/mr/Results/CS5Gamma/videos/390000/openaigym.video.11.699876.video000000.mp4)
@@ -41,10 +41,10 @@ You can view training progress while the program is running.
 
 To view policy evaluation data or data on losses and training, follow these instructions:
 
-- Open a terminal, change directory to your path directory, then run:
-```tensorboard --logdir=eval/($run_id)    # Enter actual run_id at ($run_id)```
+- Open a terminal, change directory to your path directory, then run:  
+```tensorboard --logdir=eval/($run_id)    # Enter actual run_id at ($run_id)```  
 to view evaluation of the current policy.
-- For viewing training data, run:
+- For viewing training data, run:  
 ```tensorboard --logdir=train/($run_id)'.    # Enter actual run_id at ($run_id)```
 - Then open any browser, go to [http://localhost:6006/] to view graphs of your training data.
 
