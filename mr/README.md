@@ -49,7 +49,7 @@ to view evaluation of the current policy.
 
 Then open any browser, go to http://localhost:6006/ to view graphs of your data.
 
-The vid directory has subdirectories named after the iteration the video was created at.
+The vid directory has subdirectories named after the iteration the video was created at.  
 Each subdirectory contains one video of the policy being executed.
 
 ## TODOs
