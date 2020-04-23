@@ -27,7 +27,7 @@ To run DDPG_Bipedal.ipynb:
 To run DDPG_Bipedal.py:
 - Download DDPG_Bipedal.py or clone this repository,
 - Open terminal and change current directory to where DDPG_Bipedal.py is,
-- Run 'python ```DDPG_Bipedal.py --help```,
+- Run ```python DDPG_Bipedal.py --help```,
 - Run with arguments according to help description.
 
 ## Output management
