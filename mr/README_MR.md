@@ -1,6 +1,6 @@
 # DDPG
 Code originally from https://github.com/tensorflow/agents/tree/master/tf_agents/agents/ddpg/examples
-Citation below
+citation below
 
 [Video of walker trained with CS5Gamma](/mr/Results/CS5Gamma/videos/390000/openaigym.video.11.699876.video000000.mp4)
 ## Installation
@@ -28,7 +28,7 @@ To run DDPG_Bipedal.py:
 - Download DDPG_Bipedal.py or clone this repository,
 - Open terminal and change current directory to where DDPG_Bipedal.py is,
 - Run 'python ```DDPG_Bipedal.py --help```,
-- Set arguments according to help description.
+- Run with arguments according to help description.
 
 ## Output management
 
