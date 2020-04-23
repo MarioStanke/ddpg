@@ -1,6 +1,6 @@
 # DDPG
 Code originally from https://github.com/tensorflow/agents/tree/master/tf_agents/agents/ddpg/examples  
-citation below
+Citation can be found at the bottom.
 
 [Video of walker trained with CS5Gamma](/mr/Results/CS5Gamma/videos/390000/openaigym.video.11.699876.video000000.mp4)
 ## Installation
