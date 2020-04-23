@@ -33,9 +33,9 @@ To run DDPG_Bipedal.py:
 ## Output management
 
 DDPG Bipedal will create three subdirectories to the directory the path was set to:
-- eval contains data on policy evaluation,
-- train contains data on losses and training,
-- vid contains videos of trained walker.
+- ```eval``` contains data on policy evaluation,
+- ```train``` contains data on losses and training,
+- ```vid``` contains videos of trained walker.
 
 You can view training progress while the program is running.
 
