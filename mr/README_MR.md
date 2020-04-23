@@ -27,7 +27,7 @@ To run DDPG_Bipedal.ipynb:
 To run DDPG_Bipedal.py:
 - Download DDPG_Bipedal.py or clone this repository,
 - Open terminal and change current directory to where DDPG_Bipedal.py is,
-- Run 'python DDPG_Bipedal.py --help',
+- Run 'python ```DDPG_Bipedal.py --help```,
 - Set arguments according to help description.
 
 ## Output management
@@ -42,15 +42,14 @@ You can view training progress while the program is running.
 To view policy evaluation data or data on losses and training, follow these instructions:
 
 - Open a terminal, change directory to your path directory, then run:
-'tensorboard --logdir=eval/($run_id)'    # Enter actual run_id at ($run_id)
+```tensorboard --logdir=eval/($run_id)    # Enter actual run_id at ($run_id)```
 to view evaluation of the current policy.
 - For viewing training data, run:
-'tensorboard --logdir=train/($run_id)'.    # Enter actual run_id at ($run_id)
-- Then open any browser, go to http://localhost:6006/ to view graphs of your training data.
+```tensorboard --logdir=train/($run_id)'.    # Enter actual run_id at ($run_id)```
+- Then open any browser, go to [http://localhost:6006/] to view graphs of your training data.
 
 The vid directory has subdirectories named after the iteration the video was created at.
 Each subdirectory contains one video of the policy being executed.
-Videos are being created only if the policy evaluation results in an average return >= 230.
 
 ## TODOs
 
@@ -59,7 +58,7 @@ Videos are being created only if the policy evaluation results in an average ret
 - Fill Output_Test with output data
 
 ## Citation
-
+```
 @misc{TFAgents,
   title = {{TF-Agents}: A library for Reinforcement Learning in TensorFlow},
   author = "{Sergio Guadarrama, Anoop Korattikara, Oscar Ramirez,
@@ -71,4 +70,4 @@ Videos are being created only if the policy evaluation results in an average ret
   year = 2018,
   note = "[Online; accessed 17.12.2019]"
 }
-
+```
