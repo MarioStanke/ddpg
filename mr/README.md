@@ -43,10 +43,10 @@ You can view training progress while the program is running.
 To view policy evaluation data or data on losses and training, follow these instructions:
 
 - Open a terminal, change directory to your path directory, then run:  
-```tensorboard --logdir=eval/($run_id)    # Enter actual run_id at ($run_id)```  
+```tensorboard --logdir=eval/run_id    # Enter actual run_id at run_id```  
 to view evaluation of the current policy.
 - For viewing training data, run:  
-```tensorboard --logdir=train/($run_id)    # Enter actual run_id at ($run_id)```.
+```tensorboard --logdir=train/run_id    # Enter actual run_id at run_id```.
 
 Then open any browser, and go to http://localhost:6006/ to view graphs of your data.
 
