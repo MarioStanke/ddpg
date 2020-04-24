@@ -7,8 +7,10 @@ Citation can be found at the bottom.
 Before trying to run DDPG Bipedal, please install the following dependencies.
 ```
 pip install python==3.7.4
-pip install tensorflow==2.1.0
+pip install tensorflow==2.0.0
+pip install tensorflow-probability==0.8.0
 pip install gym==0.15.4
+# Make sure you have swig and pystan packages installed
 pip install box2d-py==2.3.8   # Install gym and box2d to get BipedalWalker-v2
 sudo apt-get install ffmpeg==1.4   # Install ffmpeg for video creation
 pip install tf-agents==0.3.0    # Install TF-Agents for dependencies
