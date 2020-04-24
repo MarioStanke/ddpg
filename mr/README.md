@@ -50,7 +50,7 @@ to view evaluation of the current policy.
 Then open any browser, and go to http://localhost:6006/ to view graphs of your data.
 
 The vid directory has subdirectories named after the iteration the video was created at.  
-Each subdirectory contains one video of the policy being executed.
+Each subdirectory contains one video of the policy being executed.  
 Videos will only be created if your policy achieves an average return greater than 230.
 
 ## TODOs
