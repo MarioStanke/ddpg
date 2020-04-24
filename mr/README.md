@@ -21,14 +21,12 @@ pip install jupyterlab==1.2.3      # Install jupyterlab for running .ipynb
 There are two alternatives for running DDPG Bipedal.
 
 To run DDPG_Bipedal.ipynb:
-- Download DDPG_Bipedal.ipynb or clone this repository,
-- Open jupyter lab and move to location of DDPG_Bipedal.ipynb,
-- Open DDPG_Bipedal.ipynb,
-- Follow instructions in first cell of DDPG_Bipedal.ipynb.
+- Clone this repository, change directory to /mr/,
+- Open jupyter lab and DDPG_Bipedal.ipynb,
+- Follow instructions in first cell of DDPG_Bipedal.ipynb to run.
 
 To run DDPG_Bipedal.py:
-- Download DDPG_Bipedal.py or clone this repository,
-- Open terminal and change current directory to where DDPG_Bipedal.py is,
+- Clone this repository, change directory to /mr/
 - Run ```python DDPG_Bipedal.py --help```,
 - Run with arguments according to help description.
 
@@ -39,20 +37,21 @@ DDPG Bipedal will create three subdirectories to the directory the path was set 
 - ```train``` contains data on losses and training,
 - ```vid``` contains videos of trained walker.
 
-You can view training progress while the program is running.
+You can view any data progress while the program is running.  
+To view policy evaluation data or data on losses and training,  
+move to your path directory, run one of these commands:
 
-To view policy evaluation data or data on losses and training, follow these instructions:
-
-- Open a terminal, change directory to your path directory, then run:  
+- To view evaluation data, run:  
 ```tensorboard --logdir=eval/run_id    # Enter actual run_id at run_id```  
 to view evaluation of the current policy.
-- For viewing training data, run:  
+- To view training data, run:  
 ```tensorboard --logdir=train/run_id    # Enter actual run_id at run_id```.
 
 Then open any browser, and go to http://localhost:6006/ to view graphs of your data.
 
 The vid directory has subdirectories named after the iteration the video was created at.  
 Each subdirectory contains one video of the policy being executed.
+Videos will only be created if your policy achieves an average return greater than 230.
 
 ## TODOs
 
