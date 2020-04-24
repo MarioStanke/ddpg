@@ -59,7 +59,6 @@ Each subdirectory contains one video of the policy being executed.
 
 - Add remaining Hyperparameter Tuning Results.
 - Adjust bar to create video. parse hurdle?
-- Fill Output_Test with output data
 
 ## Citation
 ```
