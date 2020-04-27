@@ -21,12 +21,12 @@ pip install jupyterlab==1.2.3      # Install jupyterlab for running .ipynb
 There are two alternatives for running DDPG Bipedal.
 
 To run DDPG_Bipedal.ipynb:
-- Clone this repository, change directory to /mr/,
+- Clone this repository, change directory to /ddpg,
 - Open jupyter lab and DDPG_Bipedal.ipynb,
 - Follow instructions in first cell of DDPG_Bipedal.ipynb to run.
 
 To run DDPG_Bipedal.py:
-- Clone this repository, change directory to /mr/
+- Clone this repository, change directory to /ddpg,
 - Run ```python DDPG_Bipedal.py --help```,
 - Run with arguments according to help description.
 
