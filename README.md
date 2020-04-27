@@ -2,7 +2,7 @@
 Code originally from https://github.com/tensorflow/agents/
 Citation can be found at the bottom.
 
-[Video of walker trained with CS5Gamma](/mr/Results/CS5Gamma/videos/390000/openaigym.video.11.699876.video000000.mp4)
+[Video of walker trained with CS5Gamma](/Results/CS5Gamma/videos/390000/openaigym.video.11.699876.video000000.mp4)
 ## Installation
 Before trying to run DDPG Bipedal, please install the following dependencies.
 ```
