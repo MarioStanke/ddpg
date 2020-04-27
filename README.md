@@ -53,7 +53,7 @@ The vid directory has subdirectories named after the iteration the video was cre
 Each subdirectory contains one video of the policy being executed.  
 Videos will only be created if your policy achieves an average return greater than 230.  
 
-See (/Output_Example/) for a preview of what your output will look like.
+See [here](/Output_Example/) for a preview of what your output will look like.
 
 ## TODOs
 
